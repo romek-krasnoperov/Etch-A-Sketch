@@ -73,10 +73,8 @@ function setColor(color) {
         divs[i].addEventListener("mouseover", function (e) {
             if (color == "black") {
                 e.target.style.backgroundColor = "#333";
-            } else if (color == "random") {
-                e.target.style.backgroundColor = randomColor();
             } else {
-                e.target.style.backgroundColor = "#333";
+                e.target.style.backgroundColor = randomColor();
             }
         })
     }

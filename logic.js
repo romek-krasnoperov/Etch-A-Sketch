@@ -5,9 +5,10 @@ const gridSize = document.querySelector(".size-change");
 const resetBtn = document.querySelector(".reset");
 const blackBtn = document.querySelector(".black");
 const randomBtn = document.querySelector(".random");
+const sizeValue = document.querySelector(".sizeValue")
 
-sizingGrid(30);
-creatingDivs(30);
+sizingGrid(25);
+creatingDivs(25);
 
 function sizingGrid(grid) {
     container.style.setProperty("--grid-rows", grid);
@@ -15,24 +16,22 @@ function sizingGrid(grid) {
 };
 
 gridSize.addEventListener("click", function () {
-    let size = prompt("What grid size you would like to have? (from 1 to 99)");
-    if (size > 99) {
-        delGrid();
-        sizingGrid(25);
-        creatingDivs(25);
-        return alert("Please enter a number below 99")
-    } else {
-        delGrid();
-        sizingGrid(size);
-        creatingDivs(size);
-    }
+    //let size = prompt("What grid size you would like to have? (from 1 to 99)");
+    let size = document.querySelector("input").value;
+    delGrid();
+    sizingGrid(size);
+    creatingDivs(size);
+    sizeValue.textContent = `${size} x ${size}`;
+    sizeValue.style = "font-size: 2rem";
 })
 
 function creatingDivs(grid) {
-    for (let i = 0; i < grid * grid; i++) {
-        let divs = document.createElement("div");
-        divs.classList.add("divs");
-        container.appendChild(divs);
+    for (let i = 0; i < grid; i++) {
+        for (let j = 0; j < grid; j++) {
+            let divs = document.createElement("div");
+            divs.classList.add("divs");
+            container.appendChild(divs);
+        }
     }
 }
 
@@ -46,7 +45,6 @@ resetBtn.addEventListener("click", function () {
         allDivs.style.backgroundColor = "#fefefe"
     })
 })
-
 
 // Set colors
 
@@ -64,7 +62,7 @@ function randomColor() {
     let a = Math.floor(Math.random() * 255)
     let b = Math.floor(Math.random() * 255)
     let c = Math.floor(Math.random() * 255)
-    return ("rgb("+a+", "+b+", "+c+")");
+    return ("rgb(" + a + ", " + b + ", " + c + ")");
 }
 
 function setColor(color) {
